@@ -1,6 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+const Search = ({ handleChange }) => (
+  <input
+    onChange={handleChange}
+    type="text"
+    placeholder="Search for movie, tv or person..."
+  />
+);
+
+const ResultsList = props => {
+  const data = props.data;
+  // console.log(data)
+  return data
+    ? Object.keys(data).map(key =>
+        data[key].poster_path || data[key].profile_path ? (
+          <figure key={data[key].id}>
+            <img
+              src={`http://image.tmdb.org/t/p/w154/${data[key].poster_path ||
+                data[key].profile_path}`}
+              alt={`${data[key].title || data[key].name}`}
+            />
+            <figcaption>{data[key].title || data[key].name}</figcaption>
+          </figure>
+        ) : null
+      )
+    : null;
+};
+
 function App() {
   const [data, setData] = useState({});
 
@@ -10,9 +37,9 @@ function App() {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${
+      `https://api.themoviedb.org/3/search/multi?query=${
         query.length ? query : ' '
-      }&sort_by=vote_average.desc&api_key=${api_key}`
+      }&page=1&api_key=${api_key}`
     )
       .then(response => response.json())
       .then(json => {
@@ -20,38 +47,14 @@ function App() {
       });
   }, [query]);
 
-  const MovieList = () => {
-    return data
-      ? Object.keys(data).map(key => (
-          <li key={data[key].id}>
-            {data[key].title}
-            <img
-              src={`http://image.tmdb.org/t/p/w92/${data[key].poster_path}`}
-              alt={`Poster for '${data[key].title}'`}
-            />
-          </li>
-        ))
-      : null;
-  };
+  const handleChange = e => setQuery(e.target.value);
 
   return (
     <div className="App">
-      <input
-        style={{
-          width: '92vw',
-          height: '2rem',
-          border: '2px solid grey',
-          margin: '2vw',
-          padding: '0.25rem',
-          fontSize: '1.5rem'
-        }}
-        onChange={e => setQuery(e.target.value)}
-        type="text"
-      />
-      <input type="button" value="log" onClick={() => console.log(data)} />
-      <ul>
-        <MovieList />
-      </ul>
+      <Search handleChange={handleChange} />
+      <div id="ResultsContainer">
+        <ResultsList data={data} />
+      </div>
     </div>
   );
 }
