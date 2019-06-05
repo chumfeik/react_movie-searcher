@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import styled from 'styled-components';
 
 import Search from './Search';
-import ResultsList from './ResultsList';
+import { ResultsList, ResultsContainer } from './ResultsList';
 
-function App() {
+const App = () => {
   const [data, setData] = useState({});
   const [query, setQuery] = useState('Marvel');
   const api_key = '1589b24269473d89b7da6c747d52692a';
@@ -23,14 +23,18 @@ function App() {
 
   const handleChange = e => setQuery(e.target.value);
 
+  const StyledApp = styled(App)`
+    background-color: red;
+  `;
+
   return (
     <div className="App">
       <Search handleChange={handleChange} />
-      <div id="ResultsContainer">
+      <ResultsContainer>
         <ResultsList data={data} />
-      </div>
+      </ResultsContainer>
     </div>
   );
-}
+};
 
 export default App;
