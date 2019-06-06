@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-
+import { GlobalStyle } from './styles/GlobalStyle';
 import Search from './Search';
 import { ResultsList, ResultsContainer } from './ResultsList';
 
-const App = () => {
+const App = ({ className }) => {
   const [data, setData] = useState({});
   const [query, setQuery] = useState('Marvel');
   const api_key = '1589b24269473d89b7da6c747d52692a';
@@ -23,12 +22,9 @@ const App = () => {
 
   const handleChange = e => setQuery(e.target.value);
 
-  const StyledApp = styled(App)`
-    background-color: red;
-  `;
-
   return (
-    <div className="App">
+    <div className={className}>
+      <GlobalStyle />
       <Search handleChange={handleChange} />
       <ResultsContainer>
         <ResultsList data={data} />
