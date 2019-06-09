@@ -2,7 +2,6 @@ import React from 'react';
 import { NavigationBar } from './styles/NavigationStyle';
 
 const Navigation = ({ page, data, changePage }) => (
-  // #TODO: remove inline style for nav
   <NavigationBar>
     <button {...page <= 1 && { disabled: true }} onClick={() => changePage(-1)}>
       Previous
