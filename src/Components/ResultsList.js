@@ -13,9 +13,10 @@ const showCard = data => {
 
 const ResultsList = props => {
   const data = props.data;
+  const resultsExist = data && data.length;
   const hasPicture = d => d.poster_path || d.profile_path;
-
-  return data.length ? (
+  // # TODO: don't check picture existence
+  return resultsExist ? (
     Object.keys(data).map(key => hasPicture(data[key]) && showCard(data[key]))
   ) : (
     <p>Oops there's nothing here</p>
