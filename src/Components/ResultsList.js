@@ -19,7 +19,7 @@ const ResultsList = props => {
   return resultsExist ? (
     Object.keys(data).map(key => hasPicture(data[key]) && showCard(data[key]))
   ) : (
-    <p>Oops there's nothing here</p>
+    <span>Oops there's nothing here...</span>
   );
 };
 
