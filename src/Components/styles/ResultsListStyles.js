@@ -13,13 +13,6 @@ const ResultsContainer = styled.div`
     border: 1px solid #aaa;
     border-radius: 0.5rem;
   }
-  figure {
-    text-align: center;
-    figcaption {
-      padding-top: 1rem;
-      font-size: 1.2rem;
-    }
-  }
   .description {
     margin: 0 1rem;
     padding-bottom: 1rem;
@@ -38,13 +31,6 @@ const ResultsContainer = styled.div`
       font-size: 1.2rem;
       text-transform: capitalize;
       text-align: right;
-    }
-    figure {
-      display: inline-block;
-      margin: 1rem;
-      figcaption {
-        font-size: 0.5rem;
-      }
     }
   }
   .date {
