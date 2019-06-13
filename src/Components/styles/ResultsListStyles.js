@@ -7,7 +7,7 @@ const ResultsContainer = styled.div`
   .card {
     display: grid;
     grid-template-columns: 184px auto;
-    grid-template-rows: 1fr 3rem;
+    grid-template-rows: 1fr auto;
     padding-top: 1rem;
     background-color: #ff6;
     border: 1px solid #aaa;
@@ -22,7 +22,7 @@ const ResultsContainer = styled.div`
   }
   .description {
     margin: 0 1rem;
-    position: relative;
+    padding-bottom: 1rem;
     div {
       border: 1px solid grey;
       border-radius: 0.5rem;

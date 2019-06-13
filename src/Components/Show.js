@@ -4,8 +4,16 @@ import genres from '../genres';
 
 const Show = props => {
   const data = props.data;
-  // console.log(data.genre_ids);
-  // console.log(genres[28])
+
+  const Genres = () => (
+    <div className="genres">
+      <span>Genres:</span>
+      {data.genre_ids.map(id => (
+        <li key={id}>{genres[id]}</li>
+      ))}
+    </div>
+  );
+
   return (
     <div className="card">
       <Poster data={data} />
@@ -15,12 +23,7 @@ const Show = props => {
       </div>
       <span className="date">{data.release_date || data.first_air_date}</span>
       <div className="additional_info">
-        <div className="genres">
-          <span> Genres:</span>
-          {data.genre_ids.map(id => (
-            <li key={id}>{genres[id]} </li>
-          ))}
-        </div>
+        <Genres />
         <span>Rating: {data.vote_average}</span>
       </div>
     </div>
