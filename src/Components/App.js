@@ -6,7 +6,7 @@ import { ResultsList, ResultsContainer } from './ResultsList';
 
 const App = ({ className }) => {
   const [data, setData] = useState({});
-  const [query, setQuery] = useState('tarantino');
+  const [query, setQuery] = useState('Marvel');
   const [page, setPage] = useState(1);
   const api_key = '1589b24269473d89b7da6c747d52692a';
 
