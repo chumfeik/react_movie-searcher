@@ -15,20 +15,36 @@ const ResultsContainer = styled.div`
   }
   figure {
     text-align: center;
-  }
-  figcaption {
-    padding-top: 1rem;
-    font-size: 1.2rem;
+    figcaption {
+      padding-top: 1rem;
+      font-size: 1.2rem;
+    }
   }
   .description {
     margin: 0 1rem;
     position: relative;
+    div {
+      border: 1px solid grey;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      span {
+        display: block;
+        text-align: center;
+      }
+    }
     > span {
       display: block;
       margin-bottom: 1rem;
       font-size: 1.2rem;
       text-transform: capitalize;
       text-align: right;
+    }
+    figure {
+      display: inline-block;
+      margin: 1rem;
+      figcaption {
+        font-size: 0.5rem;
+      }
     }
   }
   .date {
