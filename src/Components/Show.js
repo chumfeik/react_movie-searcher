@@ -1,17 +1,11 @@
 import React from 'react';
+import Poster from './Poster';
 
 const Show = props => {
   const data = props.data;
-
   return (
     <div className="card">
-      <figure>
-        <img
-          src={`http://image.tmdb.org/t/p/w154/${data.poster_path}`}
-          alt={`${data.title || data.name}`}
-        />
-        <figcaption>{data.title || data.name}</figcaption>
-      </figure>
+      <Poster data={data} />
       <div className="description">
         <span>{data.media_type}</span>
         <p>{data.overview}</p>
