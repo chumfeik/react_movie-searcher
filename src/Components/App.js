@@ -4,6 +4,8 @@ import Search from './Search';
 import Navigation from './Navigation';
 import { ResultsList, ResultsContainer } from './ResultsList';
 
+export const Context = React.createContext();
+
 const App = ({ className }) => {
   const [data, setData] = useState({});
   const [query, setQuery] = useState('tarantino');
@@ -39,13 +41,15 @@ const App = ({ className }) => {
   return (
     <div className={className}>
       <GlobalStyle />
-      <Search handleChange={handleChange} />
-      {/* #TODO: remove top navigation */}
-      <Navigation data={data} page={page} changePage={changePage} />
-      <ResultsContainer>
-        <ResultsList data={data.results} />
-      </ResultsContainer>
-      {/* <Navigation /> */}
+      <Context.Provider value={'hello!'}>
+        <Search handleChange={handleChange} />
+        {/* #TODO: remove top navigation */}
+        <Navigation data={data} page={page} changePage={changePage} />
+        <ResultsContainer>
+          <ResultsList data={data.results} />
+        </ResultsContainer>
+        {/* <Navigation /> */}
+      </Context.Provider>
     </div>
   );
 };
