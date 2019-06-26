@@ -19,16 +19,20 @@ const Show = props => {
   const state = React.useContext(Context);
   // console.log(state)
 
+  const handleClick = () => state.setMovieID(data.id)
+
   return (
     <div className="card">
-      <Poster data={data} />
+      <Link onClick={handleClick} to={`/details/`}>
+        <Poster data={data} />
+      </Link>
       <div className="description">
         <span>{data.media_type}</span>
         <p>{data.overview}</p>
         <span>{state.movieID}</span>
-        <Link onClick={() => state.setMovieID(data.id)} to={`/details/`}>
+        {/* <Link onClick={() => state.setMovieID(data.id)} to={`/details/`}>
           details of movie
-        </Link>
+        </Link> */}
       </div>
       <span className="date">{data.release_date || data.first_air_date}</span>
       <div className="additional_info">

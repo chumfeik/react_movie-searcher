@@ -12,6 +12,9 @@ const ResultsContainer = styled.div`
     background-color: #ff6;
     border: 1px solid #aaa;
     border-radius: 0.5rem;
+    a {
+      text-align: center;
+    }
   }
   .description {
     margin: 0 1rem;
