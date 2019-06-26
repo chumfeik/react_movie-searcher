@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Poster from './Poster';
 import genres from '../genres';
 
@@ -16,7 +17,8 @@ const Show = props => {
     </div>
   );
 
-  const value = React.useContext(Context);
+  const state = React.useContext(Context);
+  // console.log(state)
 
   return (
     <div className="card">
@@ -24,7 +26,8 @@ const Show = props => {
       <div className="description">
         <span>{data.media_type}</span>
         <p>{data.overview}</p>
-        <span>{value}</span>
+        <span>{state.movieID}</span>
+        <Link onClick={() => state.setMovieID(data.id)} to={`/details/`}>details of movie</Link>
       </div>
       <span className="date">{data.release_date || data.first_air_date}</span>
       <div className="additional_info">
