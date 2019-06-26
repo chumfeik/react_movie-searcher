@@ -1,40 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { GlobalStyle } from './styles/GlobalStyle';
 import Search from './Search';
 import Navigation from './Navigation';
 import { ResultsList, ResultsContainer } from './ResultsList';
-import Details from './Details';
-
-export const Context = React.createContext();
-
-const AppRouter = () => {
-  const [movieID, setMovieID] = useState();
-
-  return (
-    <Router>
-      <Context.Provider value={{ movieID, setMovieID }}>
-        {/* <Link to="/">&larr; go back</Link> */}
-        {/* <Link to={`/details/`}>details of movie</Link> */}
-        {/* <input type="text" onChange={e => setMovieID(e.target.value)} value={movieID}></input> */}
-        {/* #TODO: change to component={Component}  */}
-        <Route
-          path="/"
-          exact
-          component={() => {
-            return <App movieID={movieID} setMovieID={setMovieID} />;
-          }}
-        />
-        <Route
-          path={`/details/`}
-          component={() => {
-            return <Details movieID={movieID} setMovieID={setMovieID} />;
-          }}
-        />
-      </Context.Provider>
-    </Router>
-  );
-};
 
 const App = ({ className }) => {
   const [data, setData] = useState({});
@@ -82,4 +50,4 @@ const App = ({ className }) => {
   );
 };
 
-export default AppRouter;
+export default App;

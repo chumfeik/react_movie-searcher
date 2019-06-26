@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from './Router';
 import Poster from './Poster';
 import genres from '../genres';
-
-import { Context } from './App';
 
 const Show = props => {
   const data = props.data;
@@ -27,7 +26,9 @@ const Show = props => {
         <span>{data.media_type}</span>
         <p>{data.overview}</p>
         <span>{state.movieID}</span>
-        <Link onClick={() => state.setMovieID(data.id)} to={`/details/`}>details of movie</Link>
+        <Link onClick={() => state.setMovieID(data.id)} to={`/details/`}>
+          details of movie
+        </Link>
       </div>
       <span className="date">{data.release_date || data.first_air_date}</span>
       <div className="additional_info">
