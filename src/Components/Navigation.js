@@ -1,7 +1,11 @@
 import React from 'react';
+import { Context } from './Router';
 import { NavigationBar } from './styles/NavigationStyle';
 
-const Navigation = ({ page, data, setPage }) => {
+const Navigation = ({ data }) => {
+  const state = React.useContext(Context);
+  const {page, setPage} = state;
+
   const changePage = change => {
     setPage(page + change);
     window.scrollTo(0, 0);

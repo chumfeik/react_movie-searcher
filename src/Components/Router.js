@@ -7,18 +7,19 @@ export const Context = React.createContext();
 
 const AppRouter = () => {
   const [movieID, setMovieID] = useState();
-
+  const [page, setPage] = useState(1);
   const [query, setQuery] = useState('tarantino');
+  const state = { movieID, setMovieID, query, setQuery, page, setPage }
 
   return (
     <Router>
-      <Context.Provider value={{ movieID, setMovieID, query, setQuery }}>
+      <Context.Provider value={state}>
         {/* #TODO: change to component={Component}  */}
         <Route
           path="/"
           exact
           component={() => {
-            return <App query={query} />;
+            return <App query={query} page={page} />;
           }}
         />
         <Route

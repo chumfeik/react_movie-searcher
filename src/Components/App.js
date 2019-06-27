@@ -4,9 +4,8 @@ import Search from './Search';
 import Navigation from './Navigation';
 import { ResultsList, ResultsContainer } from './ResultsList';
 
-const App = ({ className, query }) => {
+const App = ({ className, query, page }) => {
   const [data, setData] = useState({});
-  const [page, setPage] = useState(1);
   const api_key = '1589b24269473d89b7da6c747d52692a';
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const App = ({ className, query }) => {
       <GlobalStyle />
         <Search />
         {/* #TODO: remove top navigation */}
-        <Navigation data={data} page={page} setPage={setPage} />
+        <Navigation data={data} />
         <ResultsContainer>
           <ResultsList data={data.results} />
         </ResultsContainer>
