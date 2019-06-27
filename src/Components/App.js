@@ -26,17 +26,12 @@ const App = ({ className, query }) => {
     return () => mounted = false;
   }, [page, query]);
 
-  const changePage = change => {
-    setPage(page + change);
-    window.scrollTo(0, 0);
-  };
-
   return (
     <div className={className}>
       <GlobalStyle />
         <Search />
         {/* #TODO: remove top navigation */}
-        <Navigation data={data} page={page} changePage={changePage} />
+        <Navigation data={data} page={page} setPage={setPage} />
         <ResultsContainer>
           <ResultsList data={data.results} />
         </ResultsContainer>
