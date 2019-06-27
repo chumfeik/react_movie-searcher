@@ -24,7 +24,7 @@ const AppRouter = () => {
         <Route
           path={`/details/`}
           component={() => {
-            return <Details movieID={movieID} setMovieID={setMovieID} />;
+            return <Details movieID={movieID} />;
           }}
         />
       </Context.Provider>
