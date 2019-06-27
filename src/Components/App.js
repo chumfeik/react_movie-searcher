@@ -4,13 +4,13 @@ import Search from './Search';
 import Navigation from './Navigation';
 import { ResultsList, ResultsContainer } from './ResultsList';
 
-const App = ({ className }) => {
+const App = ({ className, query }) => {
   const [data, setData] = useState({});
-  const [query, setQuery] = useState('tarantino');
   const [page, setPage] = useState(1);
   const api_key = '1589b24269473d89b7da6c747d52692a';
 
   useEffect(() => {
+    let mounted = true;
     const sendRequest = () => {
       fetch(
         `https://api.themoviedb.org/3/search/multi?query=${
@@ -19,17 +19,12 @@ const App = ({ className }) => {
       )
         .then(response => response.json())
         .then(json => {
-          setData(json);
+          mounted && setData(json);
         });
     };
     sendRequest();
+    return () => mounted = false;
   }, [page, query]);
-
-  const handleChange = e => {
-    setQuery(e.target.value);
-    setPage(1);
-    // console.log(data.results);
-  };
 
   const changePage = change => {
     setPage(page + change);
@@ -39,7 +34,7 @@ const App = ({ className }) => {
   return (
     <div className={className}>
       <GlobalStyle />
-        <Search handleChange={handleChange} />
+        <Search />
         {/* #TODO: remove top navigation */}
         <Navigation data={data} page={page} changePage={changePage} />
         <ResultsContainer>

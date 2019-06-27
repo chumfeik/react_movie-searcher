@@ -8,18 +8,17 @@ export const Context = React.createContext();
 const AppRouter = () => {
   const [movieID, setMovieID] = useState();
 
+  const [query, setQuery] = useState('tarantino');
+
   return (
     <Router>
-      <Context.Provider value={{ movieID, setMovieID }}>
-        {/* <Link to="/">&larr; go back</Link> */}
-        {/* <Link to={`/details/`}>details of movie</Link> */}
-        {/* <input type="text" onChange={e => setMovieID(e.target.value)} value={movieID}></input> */}
+      <Context.Provider value={{ movieID, setMovieID, query, setQuery }}>
         {/* #TODO: change to component={Component}  */}
         <Route
           path="/"
           exact
           component={() => {
-            return <App movieID={movieID} setMovieID={setMovieID} />;
+            return <App query={query} />;
           }}
         />
         <Route
