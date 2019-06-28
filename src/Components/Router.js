@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import App from './App';
-import Details from './Details';
+import SearchPage from './SearchPage';
+import DetailsPage from './DetailsPage';
 
 export const Context = React.createContext();
 
@@ -19,13 +19,13 @@ const AppRouter = () => {
           path="/"
           exact
           component={() => {
-            return <App query={query} page={page} />;
+            return <SearchPage query={query} page={page} />;
           }}
         />
         <Route
           path={`/details/`}
           component={() => {
-            return <Details movieID={movieID} />;
+            return <DetailsPage movieID={movieID} />;
           }}
         />
       </Context.Provider>

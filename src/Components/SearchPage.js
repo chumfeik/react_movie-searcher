@@ -4,7 +4,7 @@ import Search from './Search';
 import Navigation from './Navigation';
 import { ResultsList, ResultsContainer } from './ResultsList';
 
-const App = ({ className, query, page }) => {
+const SearchPage = ({ className, query, page }) => {
   const [data, setData] = useState({});
   const api_key = '1589b24269473d89b7da6c747d52692a';
 
@@ -39,4 +39,4 @@ const App = ({ className, query, page }) => {
   );
 };
 
-export default App;
+export default SearchPage;
