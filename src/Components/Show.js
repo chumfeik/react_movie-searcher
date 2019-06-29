@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from './Router';
+import { Context } from './State';
 import Poster from './Poster';
 import genres from '../genres';
 

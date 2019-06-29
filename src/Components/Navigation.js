@@ -1,5 +1,5 @@
 import React from 'react';
-import { Context } from './Router';
+import { Context } from './State';
 import { NavigationBar } from './styles/NavigationStyle';
 
 const Navigation = ({ data }) => {

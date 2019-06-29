@@ -7,7 +7,7 @@ const Poster = props => {
   return (
     <StyledPoster small={props.small}>
       <img
-        src={`http://image.tmdb.org/t/p/${size}/${data.poster_path ||
+        src={`http://image.tmdb.org/t/p/${size}${data.poster_path ||
           data.profile_path}`}
         alt={`${data.title || data.name}`}
       />

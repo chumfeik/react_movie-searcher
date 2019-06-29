@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// import { Context } from './State';
 
 const Details = ({ movieID }) => {
   const [movie, setMovie] = useState({});
+  // const state = React.useContext(Context);
+  // const {movie, setMovie, movieID} = state;
 
   useEffect(() => {
     fetch(
@@ -20,7 +23,7 @@ const Details = ({ movieID }) => {
       <Link to="/">&larr; go back</Link>
       <h3>Details about {movie.title}</h3>
       <h6>{movie.tagline}</h6>
-      <img src={`http://image.tmdb.org/t/p/w154/${movie.poster_path}`} alt="" />
+      <img src={`http://image.tmdb.org/t/p/w154${movie.poster_path}`} alt="" />
       <p>{movie.overview}</p>
     </div>
   );

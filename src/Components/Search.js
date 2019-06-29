@@ -1,5 +1,5 @@
 import React from 'react';
-import { Context } from './Router';
+import { Context } from './State';
 import { SearchContainer, SearchField } from './styles/SearchStyles';
 
 const Search = () => {

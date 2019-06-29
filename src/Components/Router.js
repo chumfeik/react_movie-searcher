@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {Context} from './State';
 import SearchPage from './SearchPage';
 import DetailsPage from './DetailsPage';
 
-export const Context = React.createContext();
-
 const AppRouter = () => {
-  const [movieID, setMovieID] = useState();
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState('tarantino');
-  const state = { movieID, setMovieID, query, setQuery, page, setPage }
+  const state = React.useContext(Context);
 
   return (
     <Router>
@@ -19,13 +15,13 @@ const AppRouter = () => {
           path="/"
           exact
           component={() => {
-            return <SearchPage query={query} page={page} />;
+            return <SearchPage query={state.query} page={state.page} />;
           }}
         />
         <Route
           path={`/details/`}
           component={() => {
-            return <DetailsPage movieID={movieID} />;
+            return <DetailsPage movieID={state.movieID} />;
           }}
         />
       </Context.Provider>
