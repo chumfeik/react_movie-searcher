@@ -2,9 +2,9 @@ import React from 'react';
 import { Context } from './State';
 import { NavigationBar } from './styles/NavigationStyle';
 
-const Navigation = ({ data }) => {
+const Navigation = () => {
   const state = React.useContext(Context);
-  const {page, setPage} = state;
+  const {data, page, setPage} = state;
 
   const changePage = change => {
     setPage(page + change);

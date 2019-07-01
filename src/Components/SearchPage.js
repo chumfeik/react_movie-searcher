@@ -1,42 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { GlobalStyle } from './styles/GlobalStyle';
 import Search from './Search';
 import Navigation from './Navigation';
 import { ResultsList, ResultsContainer } from './ResultsList';
 
-const SearchPage = ({ className, query, page }) => {
-  const [data, setData] = useState({});
-  const api_key = '1589b24269473d89b7da6c747d52692a';
-
-  useEffect(() => {
-    let mounted = true;
-    const sendRequest = () => {
-      fetch(
-        `https://api.themoviedb.org/3/search/multi?query=${
-          query.length ? query : ' '
-        }&page=${page}&api_key=${api_key}`
-      )
-        .then(response => response.json())
-        .then(json => {
-          mounted && setData(json);
-        });
-    };
-    sendRequest();
-    return () => mounted = false;
-  }, [page, query]);
-
-  return (
+const SearchPage = ({ className }) => (
     <div className={className}>
       <GlobalStyle />
         <Search />
         {/* #TODO: remove top navigation */}
-        <Navigation data={data} />
+        <Navigation />
         <ResultsContainer>
-          <ResultsList data={data.results} />
+          <ResultsList />
         </ResultsContainer>
         {/* <Navigation /> */}
     </div>
-  );
-};
+);
 
 export default SearchPage;
