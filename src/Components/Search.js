@@ -4,9 +4,11 @@ import { SearchContainer, SearchField } from './styles/SearchStyles';
 
 const Search = () => {
   const state = React.useContext(Context);
+  const {setPage, query, setQuery} = state;
 
   const handleChange = e => {
-    state.setQuery(e.target.value);
+    setQuery(e.target.value);
+    setPage(1);
   };
 
   return (
@@ -15,7 +17,7 @@ const Search = () => {
       autoFocus
       onChange={handleChange}
       type="text"
-      value={state.query}
+      value={query}
       placeholder="Search for movie, tv or person..."
     />
   </SearchContainer>
