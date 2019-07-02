@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Context } from './State';
 import Poster from './Poster';
 
 const Person = props => {
   const data = props.data;
+  const state = React.useContext(Context);
 
   const KnownFor = () => (
     <div>
@@ -15,9 +18,14 @@ const Person = props => {
     </div>
   );
 
+  const handleClick = () =>
+    state.setDetails({ id: data.id, media_type: data.media_type });
+
   return (
     <div className="card">
-      <Poster data={data} />
+      <Link onClick={handleClick} to={`/details/`}>
+        <Poster data={data} />
+      </Link>
       <div className="description">
         <span>{data.media_type}</span>
         <KnownFor />

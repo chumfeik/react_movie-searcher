@@ -7,7 +7,7 @@ const State = () => {
   const [results, setResults] = useState({});
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('captain');
-  const [movieID, setMovieID] = useState();
+  const [details, setDetails] = useState();
   const [movie, setMovie] = useState({});
   const api_key = '1589b24269473d89b7da6c747d52692a';
   const state = {
@@ -17,8 +17,8 @@ const State = () => {
     setPage,
     query,
     setQuery,
-    movieID,
-    setMovieID,
+    details,
+    setDetails,
     movie,
     setMovie,
     api_key
@@ -42,12 +42,12 @@ const State = () => {
   }, [page, query]);
 
   useEffect(() => {
-    movieID && fetch(
-      `https://api.themoviedb.org/3/movie/${movieID}?api_key=1589b24269473d89b7da6c747d52692a`
+    details && fetch(
+      `https://api.themoviedb.org/3/${details.media_type}/${details.id}?api_key=1589b24269473d89b7da6c747d52692a`
     )
       .then(response => response.json())
       .then(json => setMovie(json));
-  }, [movieID]);
+  }, [details]);
 
   return (
     <Context.Provider value={state}>

@@ -6,6 +6,7 @@ import genres from '../genres';
 
 const Show = props => {
   const data = props.data;
+  const state = React.useContext(Context);
 
   const Genres = () => (
     <div className="genres">
@@ -16,10 +17,8 @@ const Show = props => {
     </div>
   );
 
-  const state = React.useContext(Context);
-  // console.log(state)
-
-  const handleClick = () => state.setMovieID(data.id)
+  const handleClick = () =>
+    state.setDetails({ id: data.id, media_type: data.media_type });
 
   return (
     <div className="card">
@@ -29,10 +28,6 @@ const Show = props => {
       <div className="description">
         <span>{data.media_type}</span>
         <p>{data.overview}</p>
-        <span>{state.movieID}</span>
-        {/* <Link onClick={() => state.setMovieID(data.id)} to={`/details/`}>
-          details of movie
-        </Link> */}
       </div>
       <span className="date">{data.release_date || data.first_air_date}</span>
       <div className="additional_info">
