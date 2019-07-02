@@ -7,7 +7,7 @@ const State = () => {
   const [data, setData] = useState({});
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('captain');
-  const [movieID, setMovieID] = useState(111);
+  const [movieID, setMovieID] = useState();
   const [movie, setMovie] = useState({});
   const api_key = '1589b24269473d89b7da6c747d52692a';
   const state = {
@@ -42,7 +42,7 @@ const State = () => {
   }, [page, query]);
 
   useEffect(() => {
-    fetch(
+    movieID && fetch(
       `https://api.themoviedb.org/3/movie/${movieID}?api_key=1589b24269473d89b7da6c747d52692a`
     )
       .then(response => response.json())
