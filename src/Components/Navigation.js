@@ -4,7 +4,7 @@ import { NavigationBar } from './styles/NavigationStyle';
 
 const Navigation = () => {
   const state = React.useContext(Context);
-  const {data, page, setPage} = state;
+  const {results, page, setPage} = state;
 
   const changePage = change => {
     setPage(page + change);
@@ -17,10 +17,10 @@ const Navigation = () => {
       Previous
     </button>
     <span>
-      Page {page} of {data.total_pages}
+      Page {page} of {results.total_pages}
     </span>
     <button
-      {...page >= data.total_pages && { disabled: true }}
+      {...page >= results.total_pages && { disabled: true }}
       onClick={() => changePage(+1)}
     >
       Next

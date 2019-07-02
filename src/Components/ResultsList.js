@@ -14,7 +14,7 @@ const showCard = data => {
 
 const ResultsList = () => {
   const state = React.useContext(Context);
-  const {results} = state.data;
+  const {results} = state.results;
   
   const resultsExist = results && results.length;
 

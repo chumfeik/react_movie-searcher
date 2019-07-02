@@ -4,15 +4,15 @@ import Router from './Router';
 export const Context = React.createContext();
 
 const State = () => {
-  const [data, setData] = useState({});
+  const [results, setResults] = useState({});
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('captain');
   const [movieID, setMovieID] = useState();
   const [movie, setMovie] = useState({});
   const api_key = '1589b24269473d89b7da6c747d52692a';
   const state = {
-    data,
-    setData,
+    results,
+    setResults,
     page,
     setPage,
     query,
@@ -34,7 +34,7 @@ const State = () => {
       )
         .then(response => response.json())
         .then(json => {
-          mounted && setData(json);
+          mounted && setResults(json);
         });
     };
     sendRequest();
