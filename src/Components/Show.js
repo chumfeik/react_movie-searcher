@@ -14,6 +14,8 @@ const Show = props => {
     </div>
   );
 
+  const getYear = date => String(date).match(/\d{4}/);
+
   return (
     <div className="card">
       <Poster data={data} />
@@ -21,7 +23,9 @@ const Show = props => {
         <span>{data.media_type}</span>
         <p>{data.overview}</p>
       </div>
-      <span className="date">{data.release_date || data.first_air_date}</span>
+      <span className="date">
+        {getYear(data.release_date) || getYear(data.first_air_date)}
+      </span>
       <div className="additional_info">
         <Genres />
         <span>Rating: {data.vote_average}</span>

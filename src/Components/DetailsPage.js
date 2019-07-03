@@ -8,12 +8,15 @@ const Details = () => {
   const imagePath = details.poster_path || details.profile_path;
   const image = `http://image.tmdb.org/t/p/w154${imagePath}`;
 
+  const formatDate = (date) => (new Date(date)).toLocaleDateString();
+
   return (
     <div>
       <Link to="/">&larr; go back</Link>
-      <h3>Details about {details.title || details.name}</h3>
-      <h6>{details.tagline || 'Known for: ' + details.known_for_department}</h6>
+      <h1>{details.title || details.name}</h1>
+      <p>{details.tagline || 'Known for ' + (details.known_for_department)}</p>
       <img src={imagePath && image} alt="" />
+      <span>Release date  {formatDate(details.release_date)}</span>
       <p>{details.overview || details.biography}</p>
     </div>
   );
