@@ -19,7 +19,7 @@ const Person = props => {
   );
 
   const handleClick = () =>
-    state.setDetails({ id: data.id, media_type: data.media_type });
+    state.setDetailsInfo({ id: data.id, media_type: data.media_type });
 
   return (
     <div className="card">
