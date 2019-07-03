@@ -11,7 +11,11 @@ const Poster = props => {
     data.profile_path}`;
 
   const handleClick = () =>
-    state.setDetailsInfo({ id: data.id, media_type: data.media_type });
+    state.setDetailsInfo({
+      id: data.id,
+      media_type: data.media_type,
+      genres: data.genre_ids
+    });
 
   return (
     <StyledPoster isSmall={props.small}>

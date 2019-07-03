@@ -44,15 +44,6 @@ const ResultsContainer = styled.div`
     justify-content: space-between;
     padding: 1rem;
   }
-  .genres {
-    > * {
-      padding-right: 0.5rem;
-    }
-    li {
-      display: inline-block;
-      list-style: none;
-    }
-  }
 `;
 
 export { ResultsContainer };

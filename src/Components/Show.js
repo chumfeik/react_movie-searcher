@@ -1,18 +1,9 @@
 import React from 'react';
 import Poster from './Poster';
-import genres from '../genres';
+import Genres from './Genres';
 
 const Show = props => {
   const data = props.data;
-
-  const Genres = () => (
-    <div className="genres">
-      <span>Genres:</span>
-      {data.genre_ids.map(id => (
-        <li key={id}>{genres[id]}</li>
-      ))}
-    </div>
-  );
 
   const getYear = date => String(date).match(/\d{4}/);
 
@@ -27,7 +18,7 @@ const Show = props => {
         {getYear(data.release_date) || getYear(data.first_air_date)}
       </span>
       <div className="additional_info">
-        <Genres />
+        <Genres ids={data.genre_ids} />
         <span>Rating: {data.vote_average}</span>
       </div>
     </div>
