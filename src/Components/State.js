@@ -5,6 +5,7 @@ export const Context = React.createContext();
 
 const State = () => {
   const [results, setResults] = useState({});
+  const [genres, setGenres] = useState();
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('captain');
   const [detailsInfo, setDetailsInfo] = useState();
@@ -12,7 +13,7 @@ const State = () => {
   const api_key = '1589b24269473d89b7da6c747d52692a';
   const state = {
     results,
-    setResults,
+    genres,
     page,
     setPage,
     query,
@@ -20,8 +21,7 @@ const State = () => {
     detailsInfo,
     setDetailsInfo,
     details,
-    setDetails,
-    api_key
+    setDetails
   };
 
   useEffect(() => {
@@ -46,11 +46,27 @@ const State = () => {
       fetch(
         `https://api.themoviedb.org/3/${detailsInfo.media_type}/${
           detailsInfo.id
-        }?api_key=1589b24269473d89b7da6c747d52692a`
+        }?api_key=${api_key}`
       )
         .then(response => response.json())
         .then(json => setDetails(json));
   }, [detailsInfo]);
+
+  useEffect(() => {
+    Promise.all([
+      fetch(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`
+      ).then(response => response.json()),
+      fetch(
+        `https://api.themoviedb.org/3/genre/tv/list?api_key=${api_key}`
+      ).then(response => response.json())
+    ]).then(res => {
+      setGenres(mapValues(res[0].genres, res[1].genres));
+    });
+  }, []);
+
+  const mapValues = (a, b) =>
+    [...a, ...b].reduce((obj, item) => ((obj[item.id] = item.name, obj)), {});
 
   return (
     <Context.Provider value={state}>
