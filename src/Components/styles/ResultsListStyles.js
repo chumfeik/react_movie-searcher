@@ -9,8 +9,7 @@ const ResultsContainer = styled.div`
     grid-template-columns: 184px auto;
     grid-template-rows: 1fr auto;
     padding-top: 1rem;
-    background-color: #ff6;
-    border: 1px solid #aaa;
+    border: 0.2rem solid #aaa;
     border-radius: 0.5rem;
     a {
       text-align: center;
@@ -20,7 +19,7 @@ const ResultsContainer = styled.div`
     margin: 0 1rem;
     padding-bottom: 1rem;
     div {
-      border: 1px solid grey;
+      border: 0.1rem solid #aaa;
       border-radius: 0.5rem;
       padding: 0.5rem;
       span {

@@ -11,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  a {
+    color: #02f;
+    :not(:hover) {text-decoration: none;}
+  }
 `;
 
 export { GlobalStyle };

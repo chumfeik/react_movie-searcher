@@ -1,6 +1,7 @@
 import React from 'react';
 import { Context } from '../State';
 import Image from '../Image';
+import icon from '../../IMDb-icon.png';
 
 const PersonDetails = () => {
   const state = React.useContext(Context);
@@ -16,6 +17,7 @@ const PersonDetails = () => {
           href={`https://www.imdb.com/name/${details.imdb_id}/`}
           target={'_blank'}
         >
+          <img src={icon} alt="" />
           IMDb
         </a>
       )}

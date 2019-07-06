@@ -2,6 +2,7 @@ import React from 'react';
 import { Context } from '../State';
 import Image from '../Image';
 import Genres from '../Genres';
+import icon from '../../IMDb-icon.png';
 
 const ShowDetails = () => {
   const state = React.useContext(Context);
@@ -22,13 +23,18 @@ const ShowDetails = () => {
           href={`https://www.imdb.com/title/${details.imdb_id}/`}
           target={'_blank'}
         >
+          <img src={icon} alt="" />
           IMDb
         </a>
       )}
       <p>{formatDate(details.release_date || details.first_air_date)}</p>
       {detailsInfo ? <Genres ids={detailsInfo.genres} /> : null}
-      <span>Seasons: {details.number_of_seasons}</span>
-      <span>Episodes: {details.number_of_episodes}</span>
+      {details.number_of_seasons && (
+        <span>Seasons: {details.number_of_seasons}</span>
+      )}
+      {details.number_of_episodes && (
+        <span>Episodes: {details.number_of_episodes}</span>
+      )}
       <p>
         {FormatRuntime(details.runtime || details.episode_run_time)}
         {details.episode_run_time && ' per episode'}
