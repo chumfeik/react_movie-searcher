@@ -1,6 +1,6 @@
 import React from 'react';
 import { Context } from '../State';
-import StyledDetails from '../styles/DetailsPageStyles';
+import { StyledDetails } from '../styles/DetailsPageStyles';
 import PersonDetails from './PersonDetails';
 import ShowDetails from './ShowDetails';
 import BackButton from './BackButton';

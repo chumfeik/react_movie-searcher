@@ -3,6 +3,7 @@ import { Context } from '../State';
 import Image from '../Image';
 import Genres from '../Genres';
 import IMDbLink from './IMDbLink';
+import { Tagline, Episodes, Details } from '../styles/DetailsPageStyles';
 
 const ShowDetails = () => {
   const state = React.useContext(Context);
@@ -21,14 +22,14 @@ const ShowDetails = () => {
     );
 
   const EpisodesInfo = () => (
-    <p className="episodes_info">
+    <Episodes>
       {details.number_of_seasons && (
         <span>Seasons: {details.number_of_seasons}</span>
       )}
       {details.number_of_episodes && (
         <span>Episodes: {details.number_of_episodes}</span>
       )}
-    </p>
+    </Episodes>
   );
 
   const Runtime = () => (
@@ -41,14 +42,14 @@ const ShowDetails = () => {
   return (
     <div>
       <h1>{details.title || details.name}</h1>
-      <p className="tagline">{details.tagline}</p>
+      <Tagline>{details.tagline}</Tagline>
       <Image path={details.poster_path} alt={details.title || details.name} />
       <IMDbLink type={'title'} id={details.imdb_id} />
       <DateInfo />
       <EpisodesInfo />
       <Runtime />
       {detailsInfo ? <Genres ids={detailsInfo.genres} /> : null}
-      <p>{details.overview}</p>
+      <Details>{details.overview}</Details>
     </div>
   );
 };

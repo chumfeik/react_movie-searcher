@@ -2,29 +2,36 @@ import styled from 'styled-components';
 
 const StyledDetails = styled.div`
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 2rem;
   max-width: 800px;
   p {
     margin: 1rem 0;
-    :last-of-type {
-      font-size: 1.2rem;
-      font-weight: lighter;
-      line-height: 1.8rem;
-    }
   }
-  .tagline {
-    font-style: italic;
+`;
+
+const Tagline = styled.p`
+  font-style: italic;
+`;
+
+const StyledIMDBLink = styled.a`
+  display: table;
+  img {
+    margin-bottom: -1rem;
+    margin-right: 0.5rem;
   }
-  .imdb {
-    display: table;
-    img {
-      margin-bottom: -1rem;
-      margin-right: 0.5rem;
-    }
-  }
-  .episodes_info span {
+`;
+
+const Episodes = styled.p`
+  span {
     margin-right: 1rem;
   }
 `;
 
-export default StyledDetails;
+const Details = styled.p`
+  font-size: 1.2rem;
+  font-weight: lighter;
+  line-height: 1.6rem;
+  font-family: 'Roboto', sans-serif;
+`;
+
+export { StyledDetails, StyledIMDBLink, Tagline, Episodes, Details };
