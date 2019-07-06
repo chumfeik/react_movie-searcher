@@ -1,5 +1,6 @@
 import React from 'react';
 import Poster from './Poster';
+import { Card, Description } from '../styles/ResultsListStyles';
 
 const Person = props => {
   const data = props.data;
@@ -16,13 +17,13 @@ const Person = props => {
   );
 
   return (
-    <div className="card">
+    <Card>
       <Poster data={data} />
-      <div className="description">
+      <Description>
         <span>{data.media_type}</span>
         <KnownFor />
-      </div>
-    </div>
+      </Description>
+    </Card>
   );
 };
 

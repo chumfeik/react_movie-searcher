@@ -1,6 +1,7 @@
 import React from 'react';
 import Poster from './Poster';
 import Genres from '../Genres';
+import { Card, Description, AdditionalInfo } from '../styles/ResultsListStyles';
 
 const Show = props => {
   const data = props.data;
@@ -8,20 +9,20 @@ const Show = props => {
   const getYear = date => String(date).match(/\d{4}/);
 
   return (
-    <div className="card">
+    <Card>
       <Poster data={data} />
-      <div className="description">
+      <Description>
         <span>{data.media_type}</span>
         <p>{data.overview}</p>
-      </div>
+      </Description>
       <span className="date">
         {getYear(data.release_date) || getYear(data.first_air_date)}
       </span>
-      <div className="additional_info">
+      <AdditionalInfo>
         <Genres ids={data.genre_ids} />
         <span>Rating: {data.vote_average}</span>
-      </div>
-    </div>
+      </AdditionalInfo>
+    </Card>
   );
 };
 
