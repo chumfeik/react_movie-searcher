@@ -1,6 +1,6 @@
 import React from 'react';
 import Poster from './Poster';
-import Genres from './Genres';
+import Genres from '../Genres';
 
 const Show = props => {
   const data = props.data;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Context } from '../State';
-import Image from './Image';
+import Image from '../Image';
 import Genres from '../Genres';
 
 const ShowDetails = () => {

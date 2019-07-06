@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalStyle } from './styles/GlobalStyle';
+import { GlobalStyle } from '../styles/GlobalStyle';
 import Search from './Search';
 import Navigation from './Navigation';
 import { ResultsList, ResultsContainer } from './ResultsList';

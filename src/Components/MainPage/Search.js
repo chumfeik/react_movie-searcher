@@ -1,6 +1,6 @@
 import React from 'react';
-import { Context } from './State';
-import { SearchContainer, SearchField } from './styles/SearchStyles';
+import { Context } from '../State';
+import { SearchContainer, SearchField } from '../styles/SearchStyles';
 
 const Search = () => {
   const state = React.useContext(Context);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import SearchPage from './SearchPage';
+import SearchPage from './MainPage/SearchPage';
 import DetailsPage from './Details/DetailsPage';
 
 const AppRouter = () => (

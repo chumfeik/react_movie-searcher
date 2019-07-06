@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from './State';
-import Image from './Details/Image';
-import StyledPoster from './styles/PosterStyles';
+import { Context } from '../State';
+import Image from '../Image';
+import StyledPoster from '../styles/PosterStyles';
 
 const Poster = props => {
   const data = props.data;

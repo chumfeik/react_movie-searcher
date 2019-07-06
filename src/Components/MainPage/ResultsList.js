@@ -1,6 +1,6 @@
 import React from 'react';
-import {Context} from './State';
-import { ResultsContainer } from './styles/ResultsListStyles';
+import {Context} from '../State';
+import { ResultsContainer } from '../styles/ResultsListStyles';
 import Show from './Show';
 import Person from './Person';
 

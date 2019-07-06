@@ -1,6 +1,6 @@
 import React from 'react';
 import { Context } from '../State';
-import Image from './Image';
+import Image from '../Image';
 
 const PersonDetails = () => {
   const state = React.useContext(Context);
@@ -13,7 +13,7 @@ const PersonDetails = () => {
       <Image path={details.profile_path} alt={details.name} />
       {details.imdb_id && (
         <a
-          href={`https://www.imdb.com/title/${details.imdb_id}/`}
+          href={`https://www.imdb.com/name/${details.imdb_id}/`}
           target={'_blank'}
         >
           IMDb
