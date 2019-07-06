@@ -1,6 +1,6 @@
 import React from 'react';
 import { Context } from '../State';
-import { NavigationBar } from '../styles/NavigationStyle';
+import { NavigationBar } from '../styles/NavigationStyles';
 
 const Navigation = () => {
   const state = React.useContext(Context);

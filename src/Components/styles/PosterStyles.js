@@ -3,9 +3,10 @@ import styled from 'styled-components';
 const StyledPoster = styled.figure`
   text-align: center;
   display: inline-block;
-  :hover {
-    img {
-      box-shadow: 0 0 0.75rem 0 #02f;
+  img {
+    border-radius: 0.5rem;
+    :hover {
+      box-shadow: 0 0 0.75rem 0 #777;
     }
   }
   ${({ isSmall }) =>

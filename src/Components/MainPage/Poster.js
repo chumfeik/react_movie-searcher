@@ -8,12 +8,14 @@ const Poster = props => {
   const data = props.data;
   const state = React.useContext(Context);
 
-  const handleClick = () =>
+  const handleClick = () => {
     state.setDetailsInfo({
       id: data.id,
       media_type: data.media_type,
       genres: data.genre_ids
     });
+    window.scrollTo(0, 0);
+  };
 
   return (
     <StyledPoster isSmall={props.small}>

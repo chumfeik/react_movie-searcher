@@ -3,7 +3,9 @@ import styled from 'styled-components';
 const ResultsContainer = styled.div`
   display: grid;
   grid-gap: 1rem;
-  margin: 1rem;
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 800px;
   .card {
     display: grid;
     grid-template-columns: 184px auto;
@@ -42,6 +44,11 @@ const ResultsContainer = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 1rem;
+    border-radius: 1rem;
+    span {
+      margin: auto 0;
+      white-space: nowrap;
+    }
   }
 `;
 

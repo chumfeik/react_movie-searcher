@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { GlobalStyle } from './styles/GlobalStyle';
+import { GlobalStyle } from './styles/GlobalStyles';
 import SearchPage from './MainPage/SearchPage';
 import DetailsPage from './Details/DetailsPage';
 

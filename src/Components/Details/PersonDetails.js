@@ -1,7 +1,7 @@
 import React from 'react';
 import { Context } from '../State';
 import Image from '../Image';
-import icon from '../../IMDb-icon.png';
+import IMDbLink from './IMDbLink';
 
 const PersonDetails = () => {
   const state = React.useContext(Context);
@@ -13,13 +13,7 @@ const PersonDetails = () => {
       <p>{`Known for ${details.known_for_department}`}</p>
       <Image path={details.profile_path} alt={details.name} />
       {details.imdb_id && (
-        <a
-          href={`https://www.imdb.com/name/${details.imdb_id}/`}
-          target={'_blank'}
-        >
-          <img src={icon} alt="" />
-          IMDb
-        </a>
+        <IMDbLink type={'name'} id={details.imdb_id} />
       )}
       <p>{details.biography}</p>
     </div>
