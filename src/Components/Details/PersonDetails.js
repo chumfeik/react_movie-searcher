@@ -8,7 +8,7 @@ const PersonDetails = () => {
   const { details } = state;
 
   return (
-    <div>
+    <>
       <h1>{details.name}</h1>
       <p>{`Known for ${details.known_for_department}`}</p>
       <Image path={details.profile_path} alt={details.name} />
@@ -16,7 +16,7 @@ const PersonDetails = () => {
         <IMDbLink type={'name'} id={details.imdb_id} />
       )}
       <p>{details.biography}</p>
-    </div>
+    </>
   );
 };
 

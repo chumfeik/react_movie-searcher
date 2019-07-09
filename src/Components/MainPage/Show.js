@@ -15,7 +15,7 @@ const Show = props => {
         <span>{data.media_type}</span>
         <p>{data.overview}</p>
       </Description>
-      <span className="date">
+      <span id="date">
         {getYear(data.release_date) || getYear(data.first_air_date)}
       </span>
       <AdditionalInfo>

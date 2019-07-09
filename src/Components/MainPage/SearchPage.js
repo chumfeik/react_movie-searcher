@@ -3,8 +3,8 @@ import Search from './Search';
 import Navigation from './Navigation';
 import { ResultsList, ResultsContainer } from './ResultsList';
 
-const SearchPage = ({ className }) => (
-  <div className={className}>
+const SearchPage = () => (
+  <>
     <Search />
     {/* #TODO: remove top navigation */}
     <Navigation />
@@ -12,7 +12,7 @@ const SearchPage = ({ className }) => (
       <ResultsList />
     </ResultsContainer>
     {/* <Navigation /> */}
-  </div>
+  </>
 );
 
 export default SearchPage;

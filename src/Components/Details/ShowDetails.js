@@ -40,7 +40,7 @@ const ShowDetails = () => {
   );
 
   return (
-    <div>
+    <>
       <h1>{details.title || details.name}</h1>
       <Tagline>{details.tagline}</Tagline>
       <Image path={details.poster_path} alt={details.title || details.name} />
@@ -50,7 +50,7 @@ const ShowDetails = () => {
       <Runtime />
       {detailsInfo ? <Genres ids={detailsInfo.genres} /> : null}
       <Details>{details.overview}</Details>
-    </div>
+    </>
   );
 };
 

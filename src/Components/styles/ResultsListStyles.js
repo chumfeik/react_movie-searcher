@@ -18,7 +18,7 @@ const Card = styled.div`
   a {
     text-align: center;
   }
-  .date {
+  #date {
     margin: auto;
   }
 `;
