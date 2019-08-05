@@ -1,11 +1,10 @@
 import React from 'react';
-import { Context } from '../State';
+import { useSelector } from 'react-redux';
 import Image from '../Image';
 import IMDbLink from './IMDbLink';
 
 const PersonDetails = () => {
-  const state = React.useContext(Context);
-  const { details } = state;
+  const details = useSelector(state => state.details);
 
   return (
     <>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Router from './Router';
 
 export const Context = React.createContext();
@@ -10,14 +11,13 @@ const State = () => {
   const page = useSelector(state => state.page);
   const query = useSelector(state => state.query);
   const contentInfo = useSelector(state => state.contentInfo);
-  const [details, setDetails] = useState({});
   const api_key = '1589b24269473d89b7da6c747d52692a';
   const state = {
     results,
     genres,
-    details,
-    setDetails
   };
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let mounted = true;
@@ -44,8 +44,8 @@ const State = () => {
         }?api_key=${api_key}`
       )
         .then(response => response.json())
-        .then(json => setDetails(json));
-  }, [contentInfo]);
+        .then(json => dispatch({ type: 'SET_DETAILS', details: json }));
+  }, [contentInfo, dispatch]);
 
   useEffect(() => {
     Promise.all([
