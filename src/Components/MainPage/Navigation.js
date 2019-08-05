@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux';
 import { NavigationBar } from '../styles/NavigationStyles';
 
 const Navigation = () => {
-  const searchResult = useSelector(state => state.searchResult);
-  const page = useSelector(state => state.page);
+  const { searchResult, page } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const previousPage = () => {
