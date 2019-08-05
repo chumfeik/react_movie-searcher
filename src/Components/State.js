@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Router from './Router';
 
-export const Context = React.createContext();
-
 const State = () => {
-  const [results, setResults] = useState({});
-  const page = useSelector(state => state.page);
-  const query = useSelector(state => state.query);
-  const contentInfo = useSelector(state => state.contentInfo);
-  const api_key = '1589b24269473d89b7da6c747d52692a';
-  const state = {
-    results
-  };
-
+  const { page, query, contentInfo } = useSelector(state => state);
   const dispatch = useDispatch();
+  
+  const api_key = '1589b24269473d89b7da6c747d52692a';
 
   useEffect(() => {
     let mounted = true;
@@ -27,12 +19,12 @@ const State = () => {
       )
         .then(response => response.json())
         .then(json => {
-          mounted && setResults(json);
+          mounted && dispatch({ type: 'SET_RESULT', result: json });
         });
     };
     sendRequest();
     return () => (mounted = false);
-  }, [page, query]);
+  }, [page, query, dispatch]);
 
   useEffect(() => {
     contentInfo.media_type &&
@@ -64,11 +56,7 @@ const State = () => {
   const mapValues = (a, b) =>
     [...a, ...b].reduce((obj, item) => ((obj[item.id] = item.name, obj)), {});
 
-  return (
-    <Context.Provider value={state}>
-      <Router />
-    </Context.Provider>
-  );
+  return <Router />;
 };
 
 export default State;

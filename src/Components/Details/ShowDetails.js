@@ -6,8 +6,7 @@ import IMDbLink from './IMDbLink';
 import { Tagline, Episodes, Details } from '../styles/DetailsPageStyles';
 
 const ShowDetails = () => {
-  const contentInfo = useSelector(state => state.contentInfo);
-  const details = useSelector(state => state.details);
+  const { contentInfo, details } = useSelector(state => state);
 
   const formatDate = date => new Date(date).toLocaleDateString();
 

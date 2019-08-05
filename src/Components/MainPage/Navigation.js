@@ -1,13 +1,10 @@
 import React from 'react';
-import { Context } from '../State';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { NavigationBar } from '../styles/NavigationStyles';
 
 const Navigation = () => {
-  const state = React.useContext(Context);
-  const { results } = state;
-
+  const searchResult = useSelector(state => state.searchResult);
   const page = useSelector(state => state.page);
   const dispatch = useDispatch();
 
@@ -28,10 +25,10 @@ const Navigation = () => {
         Previous
       </button>
       <span>
-        Page {page} of {results.total_pages}
+        Page {page} of {searchResult.total_pages}
       </span>
       <button
-        {...page >= results.total_pages && { disabled: true }}
+        {...page >= searchResult.total_pages && { disabled: true }}
         onClick={nextPage}
       >
         Next
