@@ -7,14 +7,12 @@ export const Context = React.createContext();
 
 const State = () => {
   const [results, setResults] = useState({});
-  const [genres, setGenres] = useState({});
   const page = useSelector(state => state.page);
   const query = useSelector(state => state.query);
   const contentInfo = useSelector(state => state.contentInfo);
   const api_key = '1589b24269473d89b7da6c747d52692a';
   const state = {
-    results,
-    genres,
+    results
   };
 
   const dispatch = useDispatch();
@@ -56,9 +54,12 @@ const State = () => {
         `https://api.themoviedb.org/3/genre/tv/list?api_key=${api_key}`
       ).then(response => response.json())
     ]).then(res => {
-      setGenres(mapValues(res[0].genres, res[1].genres));
+      dispatch({
+        type: 'SET_GENRES',
+        genres: mapValues(res[0].genres, res[1].genres)
+      });
     });
-  }, []);
+  }, [dispatch]);
 
   const mapValues = (a, b) =>
     [...a, ...b].reduce((obj, item) => ((obj[item.id] = item.name, obj)), {});

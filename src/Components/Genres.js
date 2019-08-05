@@ -1,10 +1,9 @@
 import React from 'react';
-import { Context } from './State';
+import { useSelector } from 'react-redux';
 import { GenresContainer } from './styles/GenresStyles';
 
 const Genres = ({ ids }) => {
-  const state = React.useContext(Context);
-  const { genres } = state;
+  const genres = useSelector(state => state.genres);
 
   return (
     <GenresContainer>
