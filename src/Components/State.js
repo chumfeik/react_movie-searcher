@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Router from './Router';
 
 export const Context = React.createContext();
 
 const State = () => {
   const [results, setResults] = useState({});
-  const [genres, setGenres] = useState();
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState('captain');
+  const [genres, setGenres] = useState({});
+  const page = useSelector(state => state.page);
+  const query = useSelector(state => state.query);
   const [detailsInfo, setDetailsInfo] = useState();
   const [details, setDetails] = useState({});
   const api_key = '1589b24269473d89b7da6c747d52692a';
   const state = {
     results,
     genres,
-    page,
-    setPage,
-    query,
-    setQuery,
     detailsInfo,
     setDetailsInfo,
     details,

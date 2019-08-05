@@ -1,14 +1,15 @@
 import React from 'react';
-import { Context } from '../State';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { SearchContainer, SearchField } from '../styles/SearchStyles';
 
 const Search = () => {
-  const state = React.useContext(Context);
-  const { setPage, query, setQuery } = state;
+  const query = useSelector(state => state.query);
+  const dispatch = useDispatch();
 
   const handleChange = e => {
-    setQuery(e.target.value);
-    setPage(1);
+    dispatch({ type: 'SEARCH', text: e.target.value });
+    dispatch({ type: 'FIRST_PAGE' });
   };
 
   return (

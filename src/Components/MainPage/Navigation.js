@@ -1,22 +1,30 @@
 import React from 'react';
 import { Context } from '../State';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavigationBar } from '../styles/NavigationStyles';
 
 const Navigation = () => {
   const state = React.useContext(Context);
-  const { results, page, setPage } = state;
+  const { results } = state;
 
-  const changePage = change => {
-    setPage(page + change);
+  const page = useSelector(state => state.page);
+  const dispatch = useDispatch();
+
+  const previousPage = () => {
+    dispatch({ type: 'PREVIOUS_PAGE' });
+    window.scrollTo(0, 0);
+  };
+
+  const nextPage = () => {
+    dispatch({ type: 'NEXT_PAGE' });
     window.scrollTo(0, 0);
   };
 
   return (
     <NavigationBar>
-      <button
-        {...page <= 1 && { disabled: true }}
-        onClick={() => changePage(-1)}
-      >
+      <button {...page <= 1 && { disabled: true }}
+      onClick={previousPage}>
         Previous
       </button>
       <span>
@@ -24,7 +32,7 @@ const Navigation = () => {
       </span>
       <button
         {...page >= results.total_pages && { disabled: true }}
-        onClick={() => changePage(+1)}
+        onClick={nextPage}
       >
         Next
       </button>
