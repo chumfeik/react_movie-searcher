@@ -9,14 +9,12 @@ const State = () => {
   const [genres, setGenres] = useState({});
   const page = useSelector(state => state.page);
   const query = useSelector(state => state.query);
-  const [detailsInfo, setDetailsInfo] = useState();
+  const contentInfo = useSelector(state => state.contentInfo);
   const [details, setDetails] = useState({});
   const api_key = '1589b24269473d89b7da6c747d52692a';
   const state = {
     results,
     genres,
-    detailsInfo,
-    setDetailsInfo,
     details,
     setDetails
   };
@@ -39,15 +37,15 @@ const State = () => {
   }, [page, query]);
 
   useEffect(() => {
-    detailsInfo &&
+    contentInfo.media_type &&
       fetch(
-        `https://api.themoviedb.org/3/${detailsInfo.media_type}/${
-          detailsInfo.id
+        `https://api.themoviedb.org/3/${contentInfo.media_type}/${
+          contentInfo.id
         }?api_key=${api_key}`
       )
         .then(response => response.json())
         .then(json => setDetails(json));
-  }, [detailsInfo]);
+  }, [contentInfo]);
 
   useEffect(() => {
     Promise.all([

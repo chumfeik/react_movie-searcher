@@ -1,17 +1,17 @@
 import React from 'react';
-import { Context } from '../State';
+import { useSelector } from 'react-redux';
 import { StyledDetails } from '../styles/DetailsPageStyles';
 import PersonDetails from './PersonDetails';
 import ShowDetails from './ShowDetails';
 import BackButton from './BackButton';
 
 const Details = () => {
-  const state = React.useContext(Context);
+  const contentInfo = useSelector(state => state.contentInfo);
 
   return (
     <StyledDetails>
       <BackButton />
-      {state.detailsInfo.media_type === 'person' ? (
+      {contentInfo.media_type === 'person' ? (
         <PersonDetails />
       ) : (
         <ShowDetails />

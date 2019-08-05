@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from '../State';
+import { useDispatch } from 'react-redux';
 import Image from '../Image';
 import StyledPoster from '../styles/PosterStyles';
 
 const Poster = props => {
   const data = props.data;
-  const state = React.useContext(Context);
+
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    state.setDetailsInfo({
+    dispatch({
+      type: 'SET_CONTENT_INFO',
       id: data.id,
       media_type: data.media_type,
       genres: data.genre_ids

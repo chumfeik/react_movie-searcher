@@ -1,5 +1,6 @@
 import React from 'react';
 import { Context } from '../State';
+import { useSelector } from 'react-redux';
 import Image from '../Image';
 import Genres from '../Genres';
 import IMDbLink from './IMDbLink';
@@ -7,7 +8,9 @@ import { Tagline, Episodes, Details } from '../styles/DetailsPageStyles';
 
 const ShowDetails = () => {
   const state = React.useContext(Context);
-  const { details, detailsInfo } = state;
+  const { details } = state;
+
+  const contentInfo = useSelector(state => state.contentInfo);
 
   const formatDate = date => new Date(date).toLocaleDateString();
 
@@ -48,7 +51,7 @@ const ShowDetails = () => {
       <DateInfo />
       <EpisodesInfo />
       <Runtime />
-      {detailsInfo ? <Genres ids={detailsInfo.genres} /> : null}
+      {contentInfo ? <Genres ids={contentInfo.genres} /> : null}
       <Details>{details.overview}</Details>
     </>
   );
