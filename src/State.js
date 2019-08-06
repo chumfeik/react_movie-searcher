@@ -1,28 +1,26 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import Router from './Router';
+import Router from './Components/Router';
 
 const State = () => {
   const { page, query, contentInfo } = useSelector(state => state);
   const dispatch = useDispatch();
-  
   const api_key = '1589b24269473d89b7da6c747d52692a';
 
   useEffect(() => {
     let mounted = true;
-    const sendRequest = () => {
-      fetch(
-        `https://api.themoviedb.org/3/search/multi?query=${
-          query.length ? query : ' '
-        }&page=${page}&api_key=${api_key}`
-      )
-        .then(response => response.json())
-        .then(json => {
-          mounted && dispatch({ type: 'SET_RESULT', result: json });
-        });
-    };
-    sendRequest();
+    fetch(
+      `https://api.themoviedb.org/3/search/multi?query=${
+        query.length ? query : ' '
+      }&page=${page}&api_key=${api_key}`
+    )
+      .then(response => response.json())
+      .then(json => {
+        mounted && dispatch({ type: 'SET_RESULT', result: json });
+      });
+
+    console.log(1);
     return () => (mounted = false);
   }, [page, query, dispatch]);
 
@@ -35,22 +33,25 @@ const State = () => {
       )
         .then(response => response.json())
         .then(json => dispatch({ type: 'SET_DETAILS', details: json }));
+    console.log(2);
   }, [contentInfo, dispatch]);
 
   useEffect(() => {
-    Promise.all([
+    const showTypes = ['movie', 'tv'];
+
+    const genresRequests = showTypes.map(type =>
       fetch(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`
-      ).then(response => response.json()),
-      fetch(
-        `https://api.themoviedb.org/3/genre/tv/list?api_key=${api_key}`
-      ).then(response => response.json())
-    ]).then(res => {
+        `https://api.themoviedb.org/3/genre/${type}/list?api_key=${api_key}`
+      ).then(res => res.json())
+    );
+
+    Promise.all(genresRequests).then(res => {
       dispatch({
         type: 'SET_GENRES',
         genres: mapValues(res[0].genres, res[1].genres)
       });
     });
+    console.log(3);
   }, [dispatch]);
 
   const mapValues = (a, b) =>
