@@ -9,19 +9,27 @@ const Poster = props => {
 
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const setContentInfo = () => {
     dispatch({
       type: 'SET_CONTENT_INFO',
       id: data.id,
       media_type: data.media_type,
       genres: data.genre_ids
     });
+  };
+
+  const handleClick = () => {
+    setContentInfo();
     window.scrollTo(0, 0);
   };
 
   return (
     <StyledPoster isSmall={props.small}>
-      <Link onClick={handleClick} to={`/details/`}>
+      <Link
+        onClick={handleClick}
+        onMouseEnter={setContentInfo}
+        to={`/details/`}
+      >
         <Image path={data.poster_path || data.profile_path} {...props} />
         <figcaption>{data.title || data.name}</figcaption>
       </Link>
