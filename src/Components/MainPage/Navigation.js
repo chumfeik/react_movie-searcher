@@ -7,6 +7,11 @@ const Navigation = () => {
   const { searchResult, page } = useSelector(state => state);
   const dispatch = useDispatch();
 
+  const firstPage = () => {
+    dispatch({ type: 'FIRST_PAGE' });
+    window.scrollTo(0, 0);
+  };
+
   const previousPage = () => {
     dispatch({ type: 'PREVIOUS_PAGE' });
     window.scrollTo(0, 0);
@@ -19,6 +24,10 @@ const Navigation = () => {
 
   return (
     <NavigationBar>
+      <button {...page <= 1 && { disabled: true }}
+      onClick={firstPage}>
+        First
+      </button>
       <button {...page <= 1 && { disabled: true }}
       onClick={previousPage}>
         Previous

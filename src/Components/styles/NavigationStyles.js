@@ -10,6 +10,7 @@ const NavigationBar = styled.nav`
     font-size: 1.25rem;
   }
   > button {
+    margin: 0 1rem;
     padding: 0.5rem;
     background-color: #222;
     color: white;
