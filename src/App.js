@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Router from './Components/Router';
 
-const State = () => {
+const App = () => {
   const { page, query, contentInfo } = useSelector(state => state);
   const dispatch = useDispatch();
   const api_key = '1589b24269473d89b7da6c747d52692a';
@@ -32,8 +32,8 @@ const State = () => {
         }?api_key=${api_key}`
       )
         .then(response => response.json())
-        .then(json => dispatch({ type: 'SET_DETAILS', details: json }));
-    console.log(2);
+        .then(json => dispatch({ type: 'SET_DETAILS', details: json }))
+        .then(console.log(2));
   }, [contentInfo, dispatch]);
 
   useEffect(() => {
@@ -45,6 +45,9 @@ const State = () => {
       ).then(res => res.json())
     );
 
+    const mapValues = (a, b) =>
+    [...a, ...b].reduce((obj, item) => ((obj[item.id] = item.name, obj)), {});
+
     Promise.all(genresRequests).then(res => {
       dispatch({
         type: 'SET_GENRES',
@@ -54,10 +57,7 @@ const State = () => {
     console.log(3);
   }, [dispatch]);
 
-  const mapValues = (a, b) =>
-    [...a, ...b].reduce((obj, item) => ((obj[item.id] = item.name, obj)), {});
-
   return <Router />;
 };
 
-export default State;
+export default App;

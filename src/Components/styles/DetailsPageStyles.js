@@ -29,7 +29,7 @@ const Episodes = styled.p`
 
 const Details = styled.p`
   font-size: 1.2rem;
-  font-weight: lighter;
+  font-weight: 300;
   line-height: 1.6rem;
   font-family: 'Roboto', sans-serif;
 `;
