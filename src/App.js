@@ -10,34 +10,34 @@ const App = () => {
 
   useEffect(() => {
     let mounted = true;
-    fetch(
-      `https://api.themoviedb.org/3/search/multi?query=${
-        query.length ? query : ' '
-      }&page=${page}&api_key=${api_key}`
-    )
-      .then(response => response.json())
-      .then(json => {
-        mounted && dispatch({ type: 'SET_RESULT', result: json });
-      });
 
-    console.log(1);
+    const fetchResults = async () => {
+      const result = await fetch(
+        `https://api.themoviedb.org/3/search/multi?query=${
+          query.length ? query : ' '
+        }&page=${page}&api_key=${api_key}`
+      );
+      const json = await result.json();
+      mounted && (await dispatch({ type: 'SET_RESULT', result: json }));
+    };
+    fetchResults();
+
     return () => (mounted = false);
   }, [page, query, dispatch]);
 
   useEffect(() => {
     let mounted = true;
 
-    contentInfo.media_type &&
-      fetch(
+    const fetchDetails = async () => {
+      const details = await fetch(
         `https://api.themoviedb.org/3/${contentInfo.media_type}/${
           contentInfo.id
         }?api_key=${api_key}`
-      )
-        .then(response => response.json())
-        .then(
-          json => mounted && dispatch({ type: 'SET_DETAILS', details: json })
-        )
-        .then(console.log(2));
+      );
+      const json = await details.json();
+      mounted && (await dispatch({ type: 'SET_DETAILS', details: json }));
+    };
+    contentInfo.media_type && fetchDetails();
 
     return () => (mounted = false);
   }, [contentInfo, dispatch]);
@@ -45,22 +45,28 @@ const App = () => {
   useEffect(() => {
     const showTypes = ['movie', 'tv'];
 
-    const genresRequests = showTypes.map(type =>
-      fetch(
-        `https://api.themoviedb.org/3/genre/${type}/list?api_key=${api_key}`
-      ).then(res => res.json())
-    );
-
-    const mapValues = (a, b) =>
-    [...a, ...b].reduce((obj, item) => ((obj[item.id] = item.name, obj)), {});
-
-    Promise.all(genresRequests).then(res => {
-      dispatch({
-        type: 'SET_GENRES',
-        genres: mapValues(res[0].genres, res[1].genres)
+    const fetchGenres = async () => {
+      const genresRequests = showTypes.map(async type => {
+        const genres = await fetch(
+          `https://api.themoviedb.org/3/genre/${type}/list?api_key=${api_key}`
+        );
+        return genres.json();
       });
-    });
-    console.log(3);
+
+      const mapValues = (a, b) =>
+        [...a, ...b].reduce(
+          (obj, item) => ((obj[item.id] = item.name, obj)),
+          {}
+        );
+        
+      const responses = await Promise.all(genresRequests);
+
+      await dispatch({
+        type: 'SET_GENRES',
+        genres: mapValues(responses[0].genres, responses[1].genres)
+      });
+    };
+    fetchGenres();
   }, [dispatch]);
 
   return <Router />;
