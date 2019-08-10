@@ -25,6 +25,8 @@ const App = () => {
   }, [page, query, dispatch]);
 
   useEffect(() => {
+    let mounted = true;
+
     contentInfo.media_type &&
       fetch(
         `https://api.themoviedb.org/3/${contentInfo.media_type}/${
@@ -32,8 +34,12 @@ const App = () => {
         }?api_key=${api_key}`
       )
         .then(response => response.json())
-        .then(json => dispatch({ type: 'SET_DETAILS', details: json }))
+        .then(
+          json => mounted && dispatch({ type: 'SET_DETAILS', details: json })
+        )
         .then(console.log(2));
+
+    return () => (mounted = false);
   }, [contentInfo, dispatch]);
 
   useEffect(() => {

@@ -7,7 +7,7 @@ const Genres = ({ ids }) => {
 
   return (
     <GenresContainer>
-      {genres && ids.map(id => <li key={id}>{genres[id]}</li>)}
+      {genres && [...new Set(ids)].map(id => <li key={id}>{genres[id]}</li>)}
     </GenresContainer>
   );
 };
