@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Router from './Components/Router';
 import { setResult, setDetails, setGenres } from './actions';
+import debounce from 'lodash.debounce';
 
 const App = () => {
   const { page, query, contentInfo } = useSelector(state => state);
@@ -21,7 +22,10 @@ const App = () => {
       const json = await response.json();
       mounted && await dispatch(setResult(json));
     };
-    fetchResults();
+
+    const debounceRequest = debounce(fetchResults, 500);
+
+    debounceRequest();
 
     return () => (mounted = false);
   }, [page, query, dispatch]);
