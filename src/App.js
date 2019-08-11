@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Router from './Components/Router';
+import { setResult, setDetails, setGenres } from './actions';
 
 const App = () => {
   const { page, query, contentInfo } = useSelector(state => state);
@@ -12,13 +13,13 @@ const App = () => {
     let mounted = true;
 
     const fetchResults = async () => {
-      const result = await fetch(
+      const response = await fetch(
         `https://api.themoviedb.org/3/search/multi?query=${
           query.length ? query : ' '
         }&page=${page}&api_key=${api_key}`
       );
-      const json = await result.json();
-      mounted && (await dispatch({ type: 'SET_RESULT', result: json }));
+      const json = await response.json();
+      mounted && await dispatch(setResult(json));
     };
     fetchResults();
 
@@ -29,13 +30,13 @@ const App = () => {
     let mounted = true;
 
     const fetchDetails = async () => {
-      const details = await fetch(
+      const response = await fetch(
         `https://api.themoviedb.org/3/${contentInfo.media_type}/${
           contentInfo.id
         }?api_key=${api_key}`
       );
-      const json = await details.json();
-      mounted && (await dispatch({ type: 'SET_DETAILS', details: json }));
+      const json = await response.json();
+      mounted && await dispatch(setDetails(json));
     };
     contentInfo.media_type && fetchDetails();
 
@@ -47,10 +48,10 @@ const App = () => {
 
     const fetchGenres = async () => {
       const genresRequests = showTypes.map(async type => {
-        const genres = await fetch(
+        const response = await fetch(
           `https://api.themoviedb.org/3/genre/${type}/list?api_key=${api_key}`
         );
-        return genres.json();
+        return response.json();
       });
 
       const mapValues = (a, b) =>
@@ -58,13 +59,12 @@ const App = () => {
           (obj, item) => ((obj[item.id] = item.name, obj)),
           {}
         );
-        
+
       const responses = await Promise.all(genresRequests);
 
-      await dispatch({
-        type: 'SET_GENRES',
-        genres: mapValues(responses[0].genres, responses[1].genres)
-      });
+      const mapedValues = mapValues(responses[0].genres, responses[1].genres);
+
+      await dispatch(setGenres(mapedValues));
     };
     fetchGenres();
   }, [dispatch]);

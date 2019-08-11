@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { search, firstPage } from '../../actions';
 import { SearchContainer, SearchField } from '../styles/SearchStyles';
 
 const Search = () => {
@@ -8,8 +9,8 @@ const Search = () => {
   const dispatch = useDispatch();
 
   const handleChange = e => {
-    dispatch({ type: 'SEARCH', text: e.target.value });
-    dispatch({ type: 'FIRST_PAGE' });
+    dispatch(search(e.target.value));
+    dispatch(firstPage());
   };
 
   return (
