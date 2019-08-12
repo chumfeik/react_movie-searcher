@@ -1,4 +1,5 @@
 import React from 'react';
+import { ImagePlaceholder } from './styles/ResultsListStyles';
 
 const Image = ({ path, ...props }) =>
   path ? (
@@ -6,5 +7,8 @@ const Image = ({ path, ...props }) =>
       src={`http://image.tmdb.org/t/p/${props.small ? 'w92' : 'w154'}${path}`}
       alt={props.alt}
     />
-  ) : null;
+  ) : (
+    <ImagePlaceholder />
+  );
+
 export default Image;

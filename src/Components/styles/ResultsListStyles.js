@@ -55,4 +55,10 @@ const AdditionalInfo = styled.div`
   }
 `;
 
-export { ResultsContainer, Card, Description, AdditionalInfo };
+const ImagePlaceholder = styled.img`
+  height: 231px;
+  width: 154px;
+  background-color: #ccc;
+`;
+
+export { ResultsContainer, Card, Description, AdditionalInfo, ImagePlaceholder };
