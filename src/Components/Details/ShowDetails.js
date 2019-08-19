@@ -7,6 +7,21 @@ import { Tagline, Episodes, Details } from '../styles/DetailsPageStyles';
 
 const ShowDetails = () => {
   const { contentInfo, details } = useSelector(state => state);
+  const {
+    name,
+    title,
+    original_name,
+    tagline,
+    poster_path,
+    imdb_id,
+    release_date,
+    first_air_date,
+    number_of_seasons,
+    number_of_episodes,
+    runtime,
+    episode_run_time,
+    overview
+  } = details;
 
   const formatDate = date => new Date(date).toLocaleDateString();
 
@@ -14,41 +29,37 @@ const ShowDetails = () => {
     time > 60 ? `${Math.floor(time / 60)}h ${time % 60}min` : time + 'min';
 
   const DateInfo = () =>
-    details.release_date ? (
-      <p>Release: {formatDate(details.release_date)}</p>
+    release_date ? (
+      <p>Release: {formatDate(release_date)}</p>
     ) : (
-      <p>First air: {formatDate(details.first_air_date)}</p>
+      <p>First air: {formatDate(first_air_date)}</p>
     );
 
   const EpisodesInfo = () => (
     <Episodes>
-      {details.number_of_seasons && (
-        <span>Seasons: {details.number_of_seasons}</span>
-      )}
-      {details.number_of_episodes && (
-        <span>Episodes: {details.number_of_episodes}</span>
-      )}
+      {number_of_seasons && <span>Seasons: {number_of_seasons}</span>}
+      {number_of_episodes && <span>Episodes: {number_of_episodes}</span>}
     </Episodes>
   );
 
   const Runtime = () => (
     <p>
-      {FormatRuntime(details.runtime || details.episode_run_time)}
-      {details.episode_run_time && ' per episode'}
+      {FormatRuntime(runtime || episode_run_time)}
+      {episode_run_time && ' per episode'}
     </p>
   );
 
   return (
     <>
-      <h1>{details.name || details.title || details.original_name}</h1>
-      <Tagline>{details.tagline}</Tagline>
-      <Image path={details.poster_path} alt={details.title || details.name} />
-      <IMDbLink type={'title'} id={details.imdb_id} />
+      <h1>{name || title || original_name}</h1>
+      <Tagline>{tagline}</Tagline>
+      <Image path={poster_path} alt={title || name} />
+      <IMDbLink type={'title'} id={imdb_id} />
       <DateInfo />
       <EpisodesInfo />
       <Runtime />
       {contentInfo ? <Genres ids={contentInfo.genres} /> : null}
-      <Details>{details.overview}</Details>
+      <Details>{overview}</Details>
     </>
   );
 };
