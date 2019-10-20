@@ -17,6 +17,7 @@ const Show = props => {
       </Description>
       <span id="date">
         {getYear(data.release_date) || getYear(data.first_air_date)}
+        {/* FIXME: date styles align */}
       </span>
       <AdditionalInfo>
         <Genres ids={data.genre_ids} />

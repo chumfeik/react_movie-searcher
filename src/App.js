@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Router from './Components/Router';
 import { setResult, setDetails, setGenres } from './actions';
 import debounce from 'lodash.debounce';
